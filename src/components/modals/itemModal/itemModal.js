@@ -7,24 +7,28 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as network from '../../service/network';
-import css from './newItemModal.scss';
-import { add } from '../../service/redux/reducers/itemList';
+import * as network from '../../../service/network';
+import css from './itemModal.scss';
+import { add } from '../../../service/redux/reducers/itemList';
+import { toggleItemModal } from '../../../service/redux/reducers/subjectPage';
 
-class NewItemModal extends Component {
+class ItemModal extends Component {
   state = { 
-    showModal: false,
+    show: false,
     subjHisId: undefined,
-    titleValue: '',
+    projHisId: undefined,
+    title: '',
+    private: true,
   };
 
+  // 작성한 새로운 아이템을 서버로 전송해요.
   sendNewItem = (event) => {
     const accessToken = this.props.account.accessToken;
     const item = {
-      title: this.state.titleValue,
-      private: true,
-      projectId: this.props.projHisId,
-      subjectId: this.props.subjHisId
+      title: this.state.title,
+      private: this.state.private,
+      projectId: this.state.projHisId,
+      subjectId: this.state.subjHisId
     };
 
     network.Item.sendNewItem(accessToken, item)
@@ -33,20 +37,30 @@ class NewItemModal extends Component {
         console.log(result.data.payload);
         this.closeModal(undefined);
         this.props.addNewItem(result.data.payload);
-      } else {
+      } 
+      else {
         console.error(result.data.msg);
       }
     });
   };
 
-  changeTitleValue = (event) => {
-    this.setState({ titleValue: event.target.value });
+  // 입력되는 중인 타이틀을 state에 넣어줘요.
+  changeTitle = (event) => {
+    this.setState({ title: event.target.value });
   };
 
+  // 모달을 닫아요.
   closeModal = (event) => {
     if (event) { event.stopPropagation(); }
 
-    this.props.changeModalState(event);
+    // this.props.changeModalState(event);
+    this.props.toggleItemModal({
+      show: false,
+      subjHisId: '',
+      projHisId: '',
+      title: '',
+      private: true,
+    });
   }
 
   stopPropagation = (event) => {
@@ -57,21 +71,21 @@ class NewItemModal extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
+    // console.log(this.state);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    let state = null;
-    if (nextProps.showModal) {
-      state = { showModal: nextProps.showModal, subjHisId: nextProps.subjHisId };
-    } else {
-      state = { showModal: nextProps.showModal, subjHisId: undefined };
+    const modal = nextProps.subjectPage.itemModal;
+
+    if (prevState.show !== modal.show) {
+      return modal;
     }
 
-    return state;
+    return null;
   }
 
   render() {
-    const sw = this.state.showModal;
+    const sw = this.state.show;
 
     return (
       <div id={css.background}
@@ -87,8 +101,8 @@ class NewItemModal extends Component {
             <input
               type="text"
               placeholder="Title.."
-              value={this.state.titleValue}
-              onChange={this.changeTitleValue}
+              value={this.state.title}
+              onChange={this.changeTitle}
               />
           </div>
           <div> </div>
@@ -113,12 +127,14 @@ class NewItemModal extends Component {
 const stateToProps = (state) => {
   return {
     account: state.account,
+    subjectPage: state.subjectPage,
   }
 };
 
 const dispatchToProps = (dispatch) => {
   return {
-    addNewItem: (value) => { dispatch(add(value)); }
+    addNewItem: (value) => { dispatch(add(value)); },
+    toggleItemModal: (value) => { dispatch(toggleItemModal(value)) },
   };
 }
-export default connect(stateToProps, dispatchToProps)(NewItemModal);
+export default connect(stateToProps, dispatchToProps)(ItemModal);

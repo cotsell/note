@@ -107,7 +107,12 @@ export const reducer = handleActions(
       return Object.assign(
         {},
         state,
-        { itemModal: action.payload });
+        { 
+          itemModal: {
+            ...state.itemModal,
+            ...action.payload 
+          }
+        });
     },
 
     [CLOSE_ALL_SUBJ_MENU]: (state, action) => {

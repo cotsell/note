@@ -14,9 +14,8 @@ import { decode } from 'jsonwebtoken';
 
 import * as network from '../../service/network';
 import { addList as addItemList, changeState as changeItemState } from '../../service/redux/reducers/itemList';
-import { addSubjState, reset as resetSubjMenu, modifySubjMenu, addItem, removeItem, removeAllItem, toggleSubjModal, closeAllSubjMenu, toggleItemChoiceMode } from '../../service/redux/reducers/subjectPage';
+import { addSubjState, reset as resetSubjMenu, modifySubjMenu, addItem, removeItem, removeAllItem, toggleSubjModal, toggleItemModal, closeAllSubjMenu, toggleItemChoiceMode } from '../../service/redux/reducers/subjectPage';
 
-import NewItemModal from './newItemModal';
 import MiniMenu from './miniMenu/miniMenu';
 
 class SubjectArticle extends Component {
@@ -27,7 +26,6 @@ class SubjectArticle extends Component {
   }
 
   state = {
-    showNewItemModal: false,
     editable: false,
     itemChoiceMode: false,
   };
@@ -47,7 +45,13 @@ class SubjectArticle extends Component {
   changeNewItemModalState = (event) => {
     if (event) { event.stopPropagation(); }
 
-    this.setState({ showNewItemModal: !this.state.showNewItemModal });
+    this.props.toggleItemModal({
+      show: true,
+      projHisId: this.props.subject.parentId,
+      subjHisId: this.props.subject.historyId,
+      title: '',
+      private: true,
+    });
   }
 
   // -----------------------------------------------------------
@@ -90,7 +94,7 @@ class SubjectArticle extends Component {
 
   // 해당 서브젝트의 아이템 리스트를 가져와요.
   // 아이템의 모든 정보를 가져오지는 않고, historyId와 title정도만 가져와요.
-  getItemList = () => {
+  getItemListFromServ = () => {
     const accessToken = this.props.account.accessToken;
     const subjHisId = this.props.subject.historyId;
 
@@ -101,7 +105,8 @@ class SubjectArticle extends Component {
       if (result.data.result) {
         // console.log(result.data.payload);
         this.props.addItemList(result.data.payload);
-      } else {
+      }
+      else {
         console.error(result.data.msg);
       }
     });
@@ -147,7 +152,7 @@ class SubjectArticle extends Component {
   componentDidMount() {
     this.setEditable();
     if (!this.props.newMode && this.props.itemList.reduxState === 'none') {
-      this.getItemList();
+      this.getItemListFromServ();
     }
   }
 
@@ -260,7 +265,7 @@ class SubjectArticle extends Component {
           <div id={css.newItemTitle}
             onClick={this.changeNewItemModalState}
             >
-            press me to make new item.
+            click me to make new item.
           </div>
         );
       }
@@ -290,7 +295,7 @@ class SubjectArticle extends Component {
           <div id={css.newTitle}
             onClick={this.toggleSubjModal}
             >
-            press me to make new subject.
+            click me to make new subject.
           </div>
         </div>
       );
@@ -319,12 +324,6 @@ class SubjectArticle extends Component {
             {newItemArticle()}
           </div>
 
-          <NewItemModal
-            showModal={this.state.showNewItemModal}
-            projHisId={this.props.subject.parentId}
-            subjHisId={this.props.subject.historyId}
-            changeModalState={this.changeNewItemModalState}
-            />
         </div>
       );
     }
@@ -356,6 +355,7 @@ const dispatchToProps = (dispatch) => {
     removeItem: (itemId) => { dispatch(removeItem(itemId)) },
     removeAllItem: () => { dispatch(removeAllItem()) },
     toggleSubjModal: (value) => { dispatch(toggleSubjModal(value)) },
+    toggleItemModal: (value) => { dispatch(toggleItemModal(value)) },
     closeAllSubjMenu: () => { dispatch(closeAllSubjMenu()) },
     toggleItemChoiceMode: (value) => { dispatch(toggleItemChoiceMode(value)) },
   }

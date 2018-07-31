@@ -10,6 +10,7 @@ import * as network from '../../service/network';
 
 import SubjectArticle from '../../components/SubjectArticle/subjectArticle';
 import SubjectModal from '../../components/modals/subjectModal/subjectModal';
+import ItemModal from '../../components/modals/itemModal/itemModal';
 
 class SubjectList extends Component {
   state = {
@@ -186,6 +187,7 @@ class SubjectList extends Component {
           {subjectList}
           {newSubject}
           <SubjectModal />
+          <ItemModal />
         </div>
       </div>
     );
