@@ -1,0 +1,29 @@
+#background {
+  height: max-content;
+
+  #filterDiv {
+    display: flex;
+    justify-content: right;
+
+    margin: 1rem auto;
+    width: 900px;
+    transition-duration: 0.3s;
+    overflow: hidden;
+
+    div {
+      width: max-content;
+    }
+  }
+  .showFilter {
+    height: 2rem !important;
+  }
+  .hideFilter {
+    height: 0rem !important;
+  }
+
+  #listDiv {
+    margin: 1rem auto;
+    width: 900px;
+    height: max-content;
+  }
+}

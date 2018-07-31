@@ -1,0 +1,29 @@
+@mixin box() {
+  border: 1px solid #4d4d4d;
+  width: 18rem;
+  height: 4rem;
+  padding: 1rem;
+}
+
+#backDiv {
+  width: max-content;
+  height: max-content;
+  margin: 1rem;
+}
+
+#newProject {
+  @include box();
+  border: 1px dashed #4d4d4d;
+
+}
+
+#project {
+  @include box();
+}
+
+#btn {
+  cursor: pointer;
+  &:hover {
+    color: yellowgreen;
+  }
+}

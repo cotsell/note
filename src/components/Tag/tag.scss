@@ -1,0 +1,45 @@
+#background {
+  padding-left: 1rem;
+
+  #aboveDiv {
+    margin-bottom: 1rem;
+
+    input {
+      width: 12rem;
+      border: none;
+      border-bottom: 2px solid #4d4d4d;
+    }
+  }
+  #belowDiv {
+    display: flex;
+    flex-wrap: wrap;
+    // flex-direction: column;
+
+    div {
+      height: max-content;
+      width: max-content;
+    }
+
+    #tagArticle {
+      display: grid;
+      grid-template-columns: auto 1rem;
+      background-color: tomato;
+      border-radius: 5px;
+      margin-right: 1rem;
+      padding-left: 0.4rem;
+      padding-right: 0.4rem;
+      color: white;
+
+      #icon {
+        cursor: pointer;
+        i {
+          font-size: 0.8rem;
+        }
+      }
+
+      div {
+        justify-self: center;
+      }
+    }
+  }
+}

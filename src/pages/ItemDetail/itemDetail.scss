@@ -1,0 +1,124 @@
+@import '../../index.scss';
+
+$mainMarginTop: 2rem;
+$mainMarginBottom: 1rem;
+
+#background {
+  height: calc(100% - #{$toolbarHeight});
+  // padding: 1px;
+  overflow: auto;
+
+  #mainDiv {
+    margin: 2rem auto 1rem auto;
+    padding: 1rem;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 2px;
+    width: 900px;
+    // height: calc(100% - (#{$mainMarginTop} + #{$mainMarginBottom}));
+    height: max-content;
+    background-color: white;
+
+    #titleDiv {
+      height: 2rem;
+      font-size: 1.6rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    #titleEditDiv {
+      text-align: center;
+      height: 2rem;
+      margin-bottom: 1rem;
+      input {
+        width: 50%;
+        height: 2rem;
+        font-size: 1.6rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+
+    #timeAndButton {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 1rem;
+
+      #time {
+
+      }
+
+      #modifyButton {
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+          cursor: pointer;
+          border: none;
+          background-color: white;
+          font-size: 0.8rem;
+          &:hover {
+            color: tomato;
+          }
+        }
+        .show {
+          display: block;
+        }
+        .hide {
+          display: none;
+        }
+      }
+    }
+    
+    #textDiv {
+      width: 100%;
+      margin-bottom: 1rem;
+      min-height: 16rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    #textEditDiv {
+      margin-bottom: 1rem;
+
+      #buttons {
+        display: flex;
+        justify-content: right;
+
+        button {
+          cursor: pointer;
+          border: none;
+          background-color: white;
+        }
+        button[type="button"] {
+          &:hover {
+            color: yellowgreen;
+          }
+        }
+        button[type="reset"] {
+          &:hover {
+            color: tomato;
+          }
+        }
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 26rem;
+      }
+    }
+
+    #checkBoxListDiv {
+      margin-bottom: 1rem;
+      #title {
+        font-size: 1.4rem;
+      }
+    }
+
+    #tagListDiv {
+      margin-bottom: 1rem;
+      #title {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}

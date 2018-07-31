@@ -1,0 +1,146 @@
+#background {
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+
+  width: 100%;
+  height: max-content;
+  background-color: #e6e6e6;
+  margin: 0px;
+
+  #logInDiv {
+    margin: 30px auto 0px auto;
+    border-radius: 5px;
+    width: 320px;
+    height: max-content;
+    // background-color: white;
+    padding: 1rem;
+
+    #title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    #email {
+      display: flex;
+      justify-content: center;
+
+      input {
+        border: none;
+        border-bottom: 2px solid #4d4d4d;
+        width: 16rem;
+        height: 2rem;
+        font-size: 1.4rem;
+        background-color: #e6e6e6;
+        padding-left: 1rem;
+      }
+    }
+
+    #password {
+      display: flex;
+      justify-content: center;
+
+      input {
+        border: none;
+        border-bottom: 2px solid #4d4d4d;
+        width: 16rem;
+        height: 2rem;
+        font-size: 1.4rem;
+        background-color: #e6e6e6;
+        padding-left: 1rem;
+      }
+    }
+
+    #nickName {
+      display: flex;
+      justify-content: center;
+
+      input {
+        border: none;
+        border-bottom: 2px solid #4d4d4d;
+        width: 16rem;
+        height: 2rem;
+        font-size: 1.4rem;
+        background-color: #e6e6e6;
+        padding-left: 1rem;
+      }
+    }
+
+    #buttons {
+      display: flex;
+      justify-content: center;
+
+      margin-top: 2rem;
+
+      button {
+        border: none;
+        background-color: #e6e6e6;
+        font-size: 1.4rem;
+        cursor: pointer;
+
+        &:hover {
+          color: yellowgreen;
+        }
+      }
+    }
+  
+    #changeMode {
+      text-align: right;
+      cursor: pointer;
+      &:hover {
+        color: yellowgreen;
+      }
+    }
+
+    .marginBottom {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+#afterSign {
+  #msgDiv {
+    margin: 10% auto;
+    padding: 1rem;
+    border: 1px solid #4d4d4d;
+    border-radius: 5px;
+    width: 320px;
+    height: max-content;
+    background-color: white;
+
+    #title {
+      font-size: 1.6rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    #id {
+      font-size: 1.4rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    #nickName {
+      font-size: 1.4rem;
+      text-align: center;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    #Btns {
+      display: flex;
+      justify-content: center;
+
+      #okBtn {
+        border: none;
+        cursor: pointer;
+        background-color: white;
+  
+        &:hover {
+          color: yellowgreen;
+        }
+      }
+    }
+  }
+}

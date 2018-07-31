@@ -1,0 +1,138 @@
+#background {
+  height: max-content;
+  // background-color: yellow;
+
+  #newTitle {
+    cursor: pointer;
+    color: gray;
+    &:hover {
+      color: tomato;
+    }
+  }
+
+  #titleDiv {
+    display: grid;
+    grid-template-columns: auto 2rem;
+
+    #title {
+      font-size: 1.5rem;
+    }
+    #option {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      #menuDiv {
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        // i {
+        //   font-size: 1.4rem;
+        // }
+      }
+
+    }
+  }
+
+  #itemContainer {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 1rem;
+    
+
+    #itemTitle {
+      width: 10rem;
+      height: 3rem;
+      cursor: pointer;
+      margin-left: 0.4rem;
+      margin-right: 0.4rem;
+      &:hover {
+        color: tomato;
+      }
+    }
+
+    #choiceItemTitle {
+      display: grid;
+      grid-template-columns: 2rem auto;
+      width: 10rem;
+      height: 3rem;
+      margin-left: 0.4rem;
+      margin-right: 0.4rem;
+    }
+
+    #newItemTitle {
+      width: 10rem;
+      height: 3rem;
+      cursor: pointer;
+      color: gray;
+      margin-left: 0.4rem;
+      margin-right: 0.4rem;
+      &:hover {
+        color: tomato;
+      }
+    }
+  }
+
+}
+
+#subjModalBack {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  #modalDiv {
+    width: 320px;
+    height: max-content;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 10% auto;
+    padding: 1rem;
+
+    #icon {
+      display: flex;
+      justify-content: center;
+    }
+
+    #input {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+
+      input {
+        height: 2rem;
+        font-size: 1.4rem;
+        padding-left: 1rem;
+      }
+    }
+
+    #buttons {
+      display: flex;
+      justify-content: right;
+
+      button {
+        margin-left: 1rem;
+        border: none;
+        background-color: white;
+        cursor: pointer;
+      }
+
+      button[type="button"] {
+        &:hover {
+          color: yellowgreen;
+        }
+      }
+
+      button[type="reset"] {
+        &:hover {
+          color: tomato;
+        }
+      }
+    }
+  }
+}
