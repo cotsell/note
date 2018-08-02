@@ -1,0 +1,53 @@
+#containerDiv {
+  position: relative;
+}
+
+#backgroundDiv {
+  display: grid;
+  grid-template-columns: 2rem auto 2rem;
+  grid-template-rows: max-content;
+
+  // height: max-content;
+  width: 100%;
+
+  #title {
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  .completeArticle {
+    text-decoration-line: line-through;
+  }
+
+  #icon {
+    cursor: pointer;
+    &:hover {
+      color: tomato;
+    }
+  }
+}
+
+#pendingModal {
+  // display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 100%;
+  bottom: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #e6e6e6;
+  z-index: 3;
+  
+  #msg {
+    height: 1rem;
+    width: max-content;
+  }
+}
+.pmShow {
+  display: flex;
+}
+.pmHide {
+  display: none;
+}

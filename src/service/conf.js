@@ -35,3 +35,7 @@ export const DELETE_ITEMS = SERVER + OR + ITEM + '/deleteItems';
 
 export const SEND_NEW_TAG = SERVER + OR + ITEM + '/newTag';
 export const DELETE_TAG = SERVER + OR + ITEM + '/deleteTag';
+export const SEND_NEW_CHECKBOX = SERVER + OR + ITEM + '/newCheckBox';
+export const MODIFY_CHECKBOX = SERVER + OR + ITEM + '/modifyCheckBox';
+export const CHANGE_CHECK_STATE = SERVER + OR + ITEM + '/changeCheckState';
+export const DELETE_CHECKBOX = SERVER + OR + ITEM + '/deleteCheckBox';

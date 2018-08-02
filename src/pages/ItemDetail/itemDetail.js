@@ -6,9 +6,13 @@ import css from './itemDetail.scss';
 import marked from 'marked';
 import prism from 'prismjs';
 
+// Reducers..
 import { set as toolbarSetState } from '../../service/redux/reducers/toolbar';
+import { insert, deleteAll, changeState } from '../../service/redux/reducers/itemDetail';
 
+// Components..
 import Tag from '../../components/Tag/tag';
+import CheckBoxList from '../../components/checkBoxList/checkBoxList';
 
 class ItemDetail extends Component {
   state = {
@@ -220,7 +224,9 @@ class ItemDetail extends Component {
     if (itemResult.data.result) {
       // console.log(itemResult.data);
       const item = itemResult.data.payload;
-      let stateOpt = { item: item };
+      // let stateOpt = { item: item };
+      let stateOpt = {};
+
 
       // 수정 권한 설정.
       if (this.props.account.loggedIn) {
@@ -229,9 +235,11 @@ class ItemDetail extends Component {
       }
 
       this.setState(stateOpt);
+      this.props.insertItem(item);
       getSubject();
 
-    } else {
+    }
+    else {
       if (itemResult.data.code === 14) {
         // 검색 결과 없음 오류.
       }
@@ -249,9 +257,21 @@ class ItemDetail extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     // this.markedText();
     prism.highlightAll();
+    console.log(this.state);
   }
 
   componentWillUnmount() {
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log(nextProps);
+    if (nextProps.itemDetail.reduxState === 'changed') {
+      nextProps.changeState('done');
+      return { item: nextProps.itemDetail.itemDetail };
+    }
+    else {
+      return null;
+    }
   }
 
   render() {
@@ -318,6 +338,21 @@ class ItemDetail extends Component {
 
     }
 
+    // 체크박스 리스트 컴포넌트 출력 여부
+    const makingCheckBoxList = () => {
+      if (this.state.item === undefined) {
+        return ;
+      }
+      else {
+        return (
+          <CheckBoxList
+            itemHisId={this.state.item.historyId}
+            checkBoxList={this.state.item.checkBoxList}
+            />
+        );
+      }
+    }
+
     return (
       <div id={css.background}>
         <div id={css.mainDiv}>
@@ -344,6 +379,7 @@ class ItemDetail extends Component {
           <div id={css.checkBoxListDiv}>
             <div></div>
             <div id={css.title}>Checkbox List</div>
+            { makingCheckBoxList() }
           </div>
 
           <div id={css.tagListDiv}>
@@ -365,12 +401,16 @@ const stateToProps = (state) => {
   return {
     account: state.account,
     toolbar: state.toolbar,
+    itemDetail: state.itemDetail,
   };
 }
 
 const dispatchToProps = (dispatch) => {
   return {
     toolbarSetState: (value) => { dispatch(toolbarSetState(value)) },
+    insertItem: (value) => { dispatch(insert(value)) },
+    deleteItem: () => { dispatch(deleteAll()) },
+    changeState: (value) => { dispatch(changeState(value)) },
   };
 }
 

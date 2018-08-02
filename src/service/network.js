@@ -148,4 +148,36 @@ export class Item {
       { headers: { 'c-access-token': accessToken } }
     );
   }
+
+  static sendNewCheckBox(accessToken, itemHisId, title) {
+    return axios.post(
+      conf.SEND_NEW_CHECKBOX,
+      { itemHisId, title },
+      { headers: { 'c-access-token': accessToken } }
+    );
+  }
+
+  static modifyCheckBox(accessToken, itemHisId, checkBox) {
+    return axios.post(
+      conf.MODIFY_CHECKBOX,
+      { itemHisId, checkBox },
+      { headers: { 'c-access-token': accessToken } }
+    );
+  }
+
+  static changeCheckState(accessToken, itemHisId, checkBoxId) {
+    return axios.post(
+      conf.CHANGE_CHECK_STATE,
+      { itemHisId, checkBoxId },
+      { headers: { 'c-access-token': accessToken } }
+    );
+  }
+
+  static deleteCheckBox(accessToken, itemHisId, checkBox) {
+    return axios.post(
+      conf.DELETE_CHECKBOX,
+      { itemHisId, checkBox },
+      { headers: { 'c-access-token': accessToken } }
+    );
+  }
 }
