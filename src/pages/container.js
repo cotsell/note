@@ -3,14 +3,21 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import css from './container.scss';
 
+// Reducers..
+import { set } from '../service/redux/reducers/account';
+
+// Components..
 import Toolbar from '../components/Toolbar/toolbar';
 import Login from './Login/login';
 import ProjectList from './ProjectList/projectList';
 import SubjectList from './SubjectList/subjectList';
 import ItemDetail from './ItemDetail/itemDetail';
+import Profile from './Profile/profile';
+
+// Service..
 import * as network from '../service/network';
-import { set } from '../service/redux/reducers/account';
 import * as conf from '../service/conf';
+
 
 class Container extends Component {
 
@@ -80,6 +87,7 @@ class Container extends Component {
           <Route exact path="/projectList/:userId" component={ProjectList} />
           <Route exact path="/subjectList/:projHisId" component={SubjectList} />
           <Route exact path="/itemDetail/:itemHisId" component={ItemDetail} />
+          <Route exact path="/profile" component={Profile} />
         </div>
       );
     } else {

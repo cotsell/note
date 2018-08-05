@@ -7,8 +7,9 @@ import { reducer as itemList } from './itemList';
 import { reducer as toolbar } from './toolbar';
 import { reducer as subjectPage } from './subjectPage';
 import { reducer as itemDetail } from './itemDetail';
+import { reducer as profile } from './profile';
 // import { reducer as data } from './data';
 
 export default combineReducers(
-  { account, projectList, subjectList, itemList, toolbar, subjectPage, itemDetail }
+  { account, projectList, subjectList, itemList, toolbar, subjectPage, itemDetail, profile }
 );

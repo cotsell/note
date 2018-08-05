@@ -28,10 +28,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
   }
 
   #profile {
     display: flex;
     align-items: center;
+    cursor: pointer;
+    &:hover {
+      color: tomato;
+    }
   }
 }

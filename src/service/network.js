@@ -22,6 +22,14 @@ export class Account {
       { id, password, nickName }
     );
   }
+
+  static changePassword(accessToken, oldPass, newPass) {
+    return axios.post(
+      conf.CHANGE_PASSWORD,
+      { oldPass, newPass },
+      { headers: { 'c-access-Token': accessToken } }
+    );
+  }
 }
 
 export class Project {

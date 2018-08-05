@@ -1,0 +1,47 @@
+#backgroundDiv {
+  
+  #mainDiv {
+    margin: 10% auto;
+    height: max-content;
+    width: 24rem;
+    border: 0px solid white;
+
+    #img {
+      display: flex;
+      justify-content: center;
+
+      height: 10rem;
+      margin-bottom: 2rem;
+
+      i {
+        font-size: 9rem;
+      }
+    }
+
+    #id {
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
+    }
+    
+    #password {
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
+    }
+    .Col2Grid {
+      display: grid;
+      grid-template-columns: max-content auto;
+    }
+    .right{
+      width: max-content;
+      justify-self: right;
+    }
+    .hover {
+      cursor: pointer;
+      &:hover {
+        color: tomato;
+      }
+    }
+  }
+}

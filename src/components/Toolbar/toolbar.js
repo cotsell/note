@@ -12,10 +12,22 @@ class Toolbar extends Component {
   testLogOut = (event) => {
     if (event) { event.stopPropagation(); }
 
-    localStorage.removeItem(Conf.LOCAL_ACCESS_TOKEN);
-    this.props.logoutAccount();
+    if (this.props.account.loggedIn) {
+      localStorage.removeItem(Conf.LOCAL_ACCESS_TOKEN);
+      this.props.logoutAccount();
+      this.props.history.replace('/login');
+    }
+    else {
+      this.props.history.replace('/login');
+    }
 
   };
+
+  goToProfilePage = (event) => {
+    event.stopPropagation();
+    // console.log(this.props.history);
+    this.props.history.replace('/profile');
+  }
 
   moveTo = (event) => {
     if (event) { event.stopPropagation(); }
@@ -54,14 +66,16 @@ class Toolbar extends Component {
           {this.props.toolbar.title}
         </div>
 
-        <div id={css.center}>
+        <div id={css.center}
+          onClick={this.testLogOut}
+          >
           Project Note
         </div>
 
         <div id={css.profile}
-          onClick={this.testLogOut}
+          onClick={this.goToProfilePage}
           >
-          LogOut
+          Profile
         </div>
       </div>
     );

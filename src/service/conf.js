@@ -14,6 +14,7 @@ const ITEM = '/item';
 export const CHECK_ACCESS_TOKEN = SERVER + OR + ACCOUNT + '/checkAccessToken';
 export const LOGIN = SERVER + OR + ACCOUNT + '/login';
 export const SIGN = SERVER + OR + ACCOUNT + '/sign';
+export const CHANGE_PASSWORD = SERVER + OR + ACCOUNT + '/changePassword';
 
 export const GET_PROJECT_LIST = SERVER + OR + PROJECT + '/projectList';
 export const GET_PROJECT_ONE = SERVER + OR + PROJECT + '/projectOne';

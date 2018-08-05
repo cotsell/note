@@ -1,0 +1,74 @@
+#backgroundDiv {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  #mainDiv {
+    background-color: white;
+    border: 0px solid white;
+    border-radius: 5px;
+    width: 20rem;
+    height: max-content;
+    margin: 10% auto;
+    padding: 1rem;
+
+    #title {
+      text-align: center;
+      font-size: 2rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    #oldPass {
+      margin-bottom: 1rem;
+      input {
+        height: 2rem;
+        width: 100%;
+        font-size: 1.4rem;
+      }
+    }
+
+    #newPass {
+      margin-bottom: 1rem;
+      input {
+        height: 2rem;
+        width: 100%;
+        font-size: 1.4rem;
+      }
+    }
+
+    #btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      #cancel {
+        width: max-content;
+        justify-self: center;
+        font-size: 1.6rem;
+        cursor: pointer;
+        &:hover {
+          color: tomato;
+        }
+      }
+
+      #ok {
+        width: max-content;
+        justify-self: center;
+        font-size: 1.6rem;
+        cursor: pointer;
+        &:hover {
+          color: yellowgreen;
+        }
+      }
+    }
+  }
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
