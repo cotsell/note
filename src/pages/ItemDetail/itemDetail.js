@@ -255,12 +255,11 @@ class ItemDetail extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    // this.markedText();
     prism.highlightAll();
-    // console.log(this.state);
   }
 
   componentWillUnmount() {
+    this.props.deleteAll();
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -410,6 +409,7 @@ const dispatchToProps = (dispatch) => {
     insertItem: (value) => { dispatch(insert(value)) },
     deleteItem: () => { dispatch(deleteAll()) },
     changeState: (value) => { dispatch(changeState(value)) },
+    deleteAll: () => { dispatch(deleteAll()) },
   };
 }
 

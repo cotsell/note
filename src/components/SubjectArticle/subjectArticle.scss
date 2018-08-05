@@ -1,6 +1,7 @@
 #background {
   height: max-content;
   // background-color: yellow;
+  margin-bottom: 3rem;
 
   #newTitle {
     cursor: pointer;
@@ -42,7 +43,7 @@
     
 
     #itemTitle {
-      width: 10rem;
+      width: 14rem;
       height: 3rem;
       cursor: pointer;
       margin-left: 0.4rem;
@@ -62,7 +63,7 @@
     }
 
     #newItemTitle {
-      width: 10rem;
+      width: 14rem;
       height: 3rem;
       cursor: pointer;
       color: gray;

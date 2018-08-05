@@ -182,7 +182,9 @@ class SubjectList extends Component {
 
     return (
       <div id={css.background}>
+
         {filter()}
+        
         <div id={css.listDiv}>
           {subjectList}
           {newSubject}

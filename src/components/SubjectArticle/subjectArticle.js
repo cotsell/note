@@ -201,7 +201,9 @@ class SubjectArticle extends Component {
   render() {
     let modeEle = (<div></div>);
 
+    // 아이템 항목 출력.
     // 아이템을 각 서브젝트와 비교해서 필터링 해줘요.
+    // ItemArticle Component를 만드는 편이 좋았을 것을..
     const makingItemArticleEle = () => {
       let itemArticleEle;
 
@@ -223,6 +225,8 @@ class SubjectArticle extends Component {
           filted = tempList;
         }
 
+        // 아이템 항목 출력.
+        // 아이템 선택 모드일 경우와 아닌 경우의 분기 처리
         if (this.state.itemChoiceMode) {
           itemArticleEle = filted.map(item => {
             return (
@@ -273,6 +277,8 @@ class SubjectArticle extends Component {
       return element;
     }
 
+    // 미니메뉴
+    // 수정권한이 있을때만 노출.
     const showMiniMenu = () => {
       if (this.state.editable) {
         return (
