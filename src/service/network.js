@@ -173,10 +173,10 @@ export class Item {
     );
   }
 
-  static deleteCheckBox(accessToken, itemHisId, checkBox) {
+  static deleteCheckBox(accessToken, itemHisId, checkBoxId) {
     return axios.post(
       conf.DELETE_CHECKBOX,
-      { itemHisId, checkBox },
+      { itemHisId, checkBoxId },
       { headers: { 'c-access-token': accessToken } }
     );
   }

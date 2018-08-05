@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import css from './checkBoxArticle.scss';
 
 // Reducers..
-import { modifyCheckOne } from '../../service/redux/reducers/itemDetail';
+import { modifyCheckOne, deleteCheckOne } from '../../service/redux/reducers/itemDetail';
 
 // Service..
 import * as network from '../../service/network';
 
 class CheckBoxArticle extends Component {
   state = {
-    pending: false,
+    pending: false, // 처리중 모달 화면에 표시 여부.
   }; 
 
   stopPropagation = (event) => {
@@ -50,15 +50,42 @@ class CheckBoxArticle extends Component {
 
   };
 
+  // 체크박스 삭제.
   deleteCheckBox = (event) => {
     console.error(`체크박스 삭제하기.`);
+    event.stopPropagation();
+
+    if (this.props.account.reduxState === 'done' &&
+        this.props.account.loggedIn === true) {
+        // 서버에서는 성공시 결과값을 돌려주지 않으므로, 이렇게 처리..
+      this.setState({ pending: true });
+
+      const accessToken = this.props.account.accessToken;
+      const itemHisId = this.props.itemHisId;
+      const checkBoxId = this.props.checkBoxData._id;
+
+      network.Item.deleteCheckBox(accessToken, itemHisId, checkBoxId)
+      .then(result => {
+        if (result.data.result) {
+          // console.log(result.data.msg);
+          this.props.deleteCheckOne(checkBoxId);
+        }
+        else {
+          console.error(result.data.msg);
+        }
+
+        // setState가 실행되기 전에, 타이밍상 리덕스에서 항목을 삭제했을 가능성이 높다.
+        // 높은 확률로 실행되지 않고 오류가 발생하기 때문에 주석처리.
+        // this.setState({ pending: false });
+      });
+    }
   };
 
   render() {
     return (
       <div id={css.containerDiv}>
         <div id={css.backgroundDiv}>
-          <div
+          <div id={css.checkBox}
             onClick={this.changeCheckState}
             >
             <i className="material-icons">
@@ -75,6 +102,8 @@ class CheckBoxArticle extends Component {
             >
             {this.props.checkBoxData.title}
           </div>
+
+          {/* X버튼 */}
           <div id={css.icon}
             onClick={this.deleteCheckBox}
             >
@@ -105,6 +134,7 @@ const stateToProps = (state) => {
 const dispatchToProps = (dispatch) => {
   return {
     modifyCheckOne: (value) => { dispatch(modifyCheckOne(value)) },
+    deleteCheckOne: (checkBoxId) => { dispatch(deleteCheckOne(checkBoxId)) },
   };
 };
 

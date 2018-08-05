@@ -257,14 +257,13 @@ class ItemDetail extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     // this.markedText();
     prism.highlightAll();
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   componentWillUnmount() {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log(nextProps);
     if (nextProps.itemDetail.reduxState === 'changed') {
       nextProps.changeState('done');
       return { item: nextProps.itemDetail.itemDetail };

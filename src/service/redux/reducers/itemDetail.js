@@ -35,12 +35,14 @@ export const reducer = handleActions({
       { itemDetail: { ...state.itemDetail, checkBoxList: action.payload } });
   },
 
+  // 체크박스 항목 하나를 추가해요.
+  // payload에는 체크박스 객체를 넣어주세요.
   [INSERT_CHECK_ONE]: (state, action) => {
     return Object.assign(
       {}, 
       state,
       { reduxState: 'changed' }, 
-      { itemDetail: { ...state.itemDetail, checkBoxList: [...state.checkBoxList, action.payload] } }
+      { itemDetail: { ...state.itemDetail, checkBoxList: [...state.itemDetail.checkBoxList, action.payload] } }
     );
   },
 
@@ -58,9 +60,10 @@ export const reducer = handleActions({
       { itemDetail: { ...state.itemDetail, checkBoxList: newList } })
   },
 
+  // checkBox 한개를 삭제. payload에 checkBox의 _id를 넣어주세요.
   [DELETE_CHECK_ONE]: (state, action) => {
     const array = state.itemDetail.checkBoxList.filter(value => {
-      return value.id === action.id ? false : true;
+      return value._id === action.payload ? false : true;
     });
 
     return Object.assign(

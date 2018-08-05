@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import css from './checkBoxList.scss';
 
 // reducers..
+import { insertCheckOne } from '../../service/redux/reducers/itemDetail';
 
 // components..
 import CheckBoxArticle from '../checkBoxArticle/checkBoxArticle';
@@ -40,16 +41,14 @@ class CheckBoxList extends Component {
       network.Item.sendNewCheckBox(accessToken, this.props.itemHisId, title)
       .then(result => {
         if (result.data.result) {
-          // 리덕스에 체크박스 값 추가.
-          console.log(result.data.payload);
+          this.props.insertCheckOne(result.data.payload);
+          this.setState({ value: '' });
         }
         else {
           console.error(result.data.msg);
         }
       });
-
     }
-
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -103,7 +102,7 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
   return {
-
+    insertCheckOne: (checkBox) => { dispatch(insertCheckOne(checkBox)) },
   };
 };
 
