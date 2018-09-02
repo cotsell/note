@@ -4,7 +4,8 @@ export const LOCAL_ACCESS_TOKEN = 'accessToken';
 // ---- 클라이언트 정보 끝
 // -----------------------------------------------------------
 
-const SERVER = 'http://localhost:8030';
+// const SERVER = 'http://localhost:8030';
+const SERVER = 'http://49.163.172.170:8030';
 const OR = '/s'; //option url, 서버와 react의 route가 겹치는 경우가 발생할수도 있어서..
 const ACCOUNT = '/account';
 const PROJECT = '/project';

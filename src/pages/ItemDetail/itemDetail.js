@@ -216,6 +216,7 @@ class ItemDetail extends Component {
     };
     // ---- 정리용도 함수 모음 끝
     // -----------------------------------------------------------
+    this.settingMarked();
 
     const historyId = this.props.match.params.itemHisId;
     const accessToken = this.props.account.accessToken;
@@ -248,6 +249,20 @@ class ItemDetail extends Component {
       }
       console.error(itemResult.data.msg);
     }
+  }
+
+  settingMarked() {
+    marked.setOptions({
+      renderer: new marked.Renderer(),
+      gfm: true,
+      tables: true,
+      breaks: true,
+      pedantic: false,
+      sanitize: true,
+      smartLists: true,
+      smartypants: false,
+      xhtml: false 
+    });
   }
 
   componentDidMount() {

@@ -3,16 +3,19 @@ import { connect } from 'react-redux';
 import css from './projectList.scss';
 import { decode } from 'jsonwebtoken';
 
-import ProjectArticle from '../../components/ProjectArticle/projectArticle';
-
-import * as network from '../../service/network';
+// Reducers..
 import { set as accountSet } from '../../service/redux/reducers/account';
 import { insertAll, insert, setState as projSetState, deleteAll } from '../../service/redux/reducers/projectList';
 import { set as setToolbar } from '../../service/redux/reducers/toolbar';
 import { deleteAll as deleteAllSubjList } from '../../service/redux/reducers/subjectList';
 import { deleteAll as deleteAllItemList } from '../../service/redux/reducers/itemList';
+
+// Service..
+import * as network from '../../service/network';
 import * as conf from '../../service/conf';
 
+// Components..
+import ProjectArticle from '../../components/ProjectArticle/projectArticle';
 
 class ProjectList extends Component {
 

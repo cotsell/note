@@ -25,8 +25,13 @@ class Toolbar extends Component {
 
   goToProfilePage = (event) => {
     event.stopPropagation();
-    // console.log(this.props.history);
-    this.props.history.replace('/profile');
+
+    if (this.props.account.loggedIn) {
+      this.props.history.replace('/profile');         
+    }
+    else {
+      this.props.history.replace('/login');
+    }
   }
 
   moveTo = (event) => {
@@ -75,7 +80,7 @@ class Toolbar extends Component {
         <div id={css.profile}
           onClick={this.goToProfilePage}
           >
-          Profile
+          { this.props.account.loggedIn ? 'Profile' : 'Login' }
         </div>
       </div>
     );

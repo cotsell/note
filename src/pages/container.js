@@ -13,6 +13,7 @@ import ProjectList from './ProjectList/projectList';
 import SubjectList from './SubjectList/subjectList';
 import ItemDetail from './ItemDetail/itemDetail';
 import Profile from './Profile/profile';
+import Main from './Main/main';
 
 // Service..
 import * as network from '../service/network';
@@ -83,6 +84,7 @@ class Container extends Component {
         <div>
           <Route path="/" component={Toolbar} />
           {/* <Route path="/" render={() => <div><Toolbar test={'tteesstt'}/></div>} /> */}
+          <Route exact path="/" component={Main} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/projectList/:userId" component={ProjectList} />
           <Route exact path="/subjectList/:projHisId" component={SubjectList} />

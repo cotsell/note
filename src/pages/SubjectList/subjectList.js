@@ -36,6 +36,7 @@ class SubjectList extends Component {
   };
 
   // 서브젝트 리스트를 가져와요.
+  // 서브젝트에 해당하는 아이템의 정보는 안가져와요.
   getSubjectList = (accessToken, projHisId) => {
     this.props.modifySubjState('pending');
 
@@ -62,6 +63,7 @@ class SubjectList extends Component {
     if (projResult.data.result) {
       stateOpt.project = projResult.data.payload;
 
+      // 타이틀바의 네비게이션에 데이터 갱신
       toolbarOpt = {
         title: projResult.data.payload.title,
         mode: 'subject',

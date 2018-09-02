@@ -5,6 +5,7 @@ import { decode } from 'jsonwebtoken';
 
 // Reducers..
 import { setPassModal } from '../../service/redux/reducers/profile';
+import { set as setToolbar } from '../../service/redux/reducers/toolbar';
 
 // Components..
 import PassModal from '../../components/modals/PassModal/passModal';
@@ -33,7 +34,21 @@ class Profile extends Component {
     this.props.setPassModal({ show: true });
   }
 
+  firstSetting = () => {
+    const userId = decode(this.props.account.accessToken)['userId'];
+
+    this.props.setToolbar({
+      title: 'back to project',
+      mode: 'profile',
+      showBackButton: true,
+      parentUrl: `/projectList/${userId}`
+    });
+  };
+
   componentDidMount() {
+    if (this.props.account.loggedId) {
+      this.firstSetting();
+    }
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -97,6 +112,7 @@ const stateToProps = (state) => {
 const dispatchToProps = (dispatch) => {
   return {
     setPassModal: (object) => { dispatch(setPassModal(object)) },
+    setToolbar: (object) => { dispatch(setToolbar(object)) },
   };
 }
 

@@ -13,7 +13,7 @@ import css from './subjectArticle.scss';
 import { decode } from 'jsonwebtoken';
 
 import * as network from '../../service/network';
-import { addList as addItemList, changeState as changeItemState } from '../../service/redux/reducers/itemList';
+import { addList as addItemList, changeState as changeItemState, deleteAll as deleteAllItems } from '../../service/redux/reducers/itemList';
 import { addSubjState, reset as resetSubjMenu, modifySubjMenu, addItem, removeItem, removeAllItem, toggleSubjModal, toggleItemModal, closeAllSubjMenu, toggleItemChoiceMode } from '../../service/redux/reducers/subjectPage';
 
 import MiniMenu from './miniMenu/miniMenu';
@@ -103,7 +103,8 @@ class SubjectArticle extends Component {
     network.Item.getItemTitleList(accessToken, subjHisId)
     .then(result => {
       if (result.data.result) {
-        // console.log(result.data.payload);
+        console.log(result.data.payload);
+        console.log(`서버로부터 받아온 아이템 리스트를 리덕스에 우겨넣어요.`);
         this.props.addItemList(result.data.payload);
       }
       else {
@@ -196,6 +197,7 @@ class SubjectArticle extends Component {
 
   componentWillUnmount() {
     this.props.resetSubjMenu();
+    this.props.deleteAllItems();
   }
 
   render() {
@@ -364,6 +366,7 @@ const dispatchToProps = (dispatch) => {
     toggleItemModal: (value) => { dispatch(toggleItemModal(value)) },
     closeAllSubjMenu: () => { dispatch(closeAllSubjMenu()) },
     toggleItemChoiceMode: (value) => { dispatch(toggleItemChoiceMode(value)) },
+    deleteAllItems: () => { dispatch(deleteAllItems()) },
   }
 }
 
